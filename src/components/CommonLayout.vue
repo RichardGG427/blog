@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <common-header></common-header>
-    <div>Middle</div>
+    <router-view></router-view>
     <common-footer></common-footer>
   </div>
 </template>

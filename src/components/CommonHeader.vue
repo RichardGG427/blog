@@ -57,6 +57,7 @@ header {
   .logo {
     line-height: 60px;
     font-size: 18px;
+    margin-left: 20px;
   }
   .nav {
     float: right;

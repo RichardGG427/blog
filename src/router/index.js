@@ -7,6 +7,12 @@ const routes = [
   {
     path: "/",
     component: () => import("@/components/CommonLayout.vue"),
+    children:[
+      {
+        path:'',
+        component:()=>import("@/views/Home.vue")
+      }
+    ]
   },
 ];
 

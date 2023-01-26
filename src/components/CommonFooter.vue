@@ -1,18 +1,15 @@
 <template>
-<footer>
-    <div class="wrapper" >
-        Copyright @ Richard
-
-    </div>
-</footer>
+  <footer>
+    <div class="wrapper">Copyright @ Richard</div>
+  </footer>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {};
 </script>
 
 <style lang="scss" scoped>
-
+.wrapper {
+  text-align: center;
+}
 </style>

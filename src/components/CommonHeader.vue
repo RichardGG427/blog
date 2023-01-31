@@ -24,7 +24,7 @@
               <router-link to="/blog">MyBlog</router-link>
             </el-menu-item>
             <el-menu-item index="3">
-              <router-link class="signBtn" to="/">Login</router-link>
+              <router-link class="signBtn" to="/login">Login</router-link>
             </el-menu-item>
           </el-menu>
         </el-col>

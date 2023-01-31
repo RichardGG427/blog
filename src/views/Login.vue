@@ -1,16 +1,171 @@
 <template>
-    <div>
-        Login
-
+  <div class="sign_box">
+    <div class="signIn" v-if="status == 1">
+      <el-form
+        :model="loginForm"
+        ref="loginForm"
+        :rules="loginRules"
+        label-width="0px"
+        :inline="false"
+        size="normal"
+        key="login"
+      >
+        <el-form-item prop="name">
+          <el-input
+            v-model="loginForm.name"
+            placeholder="Please input username"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input
+            v-model="loginForm.password"
+            placeholder="Please input password"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="signBtn" type="primary" @click="signIn"
+            >Login</el-button
+          >
+        </el-form-item>
+      </el-form>
+      <span class="signText" @click="toSignUp">Create Account</span>
     </div>
+    <div class="signUp" v-else>
+      <el-form
+        :model="regForm"
+        ref="regForm"
+        :rules="regRules"
+        label-width="0px"
+        :inline="false"
+        size="normal"
+        key="register"
+      >
+        <el-form-item prop="name">
+          <el-input
+            v-model="regForm.name"
+            placeholder="Please input username"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input
+            v-model="regForm.password"
+            placeholder="Please input password"
+          ></el-input>
+        </el-form-item>
+        <el-form-item prop="checkPass">
+          <el-input
+            v-model="regForm.checkPass"
+            placeholder="Please input password again"
+          ></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="signBtn" type="primary" @click="signUp"
+            >signUp</el-button
+          >
+        </el-form-item>
+      </el-form>
+      <span class="signText" @click="toSignIn">Back to Login</span>
+    </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+export default {
+  data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please input password"));
+      } else {
+        if (this.regForm.checkPass !== "") {
+          this.$refs.regForm.validateField("checkPass");
+        }
+        callback();
+      }
+    };
+    var validatePass2 = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("Please input password again"));
+      } else if (value !== this.regForm.password) {
+        callback(new Error("The two passwords do not match!"));
+      } else {
+        callback();
+      }
+    };
+    return {
+      status: 1,
+      loginForm: {
+        name: "",
+        password: "",
+      },
+      loginRules: {
+        name: [
+          { required: true, message: "Please input username", trigger: "blur" },
+        ],
+        password: [
+          { required: true, message: "Please input password", trigger: "blur" },
+        ],
+      },
+      regForm: {
+        name: "",
+        password: "",
+        checkPass: "",
+      },
+      regRules: {
+        name: [
+          { required: true, message: "Please input username", trigger: "blur" },
+        ],
+        password: [{ validator: validatePass, trigger: "blur" }],
+        checkPass: [{ validator: validatePass2, trigger: "blur" }],
+      },
+    };
+  },
+  methods: {
+    signIn() {
+      this.$refs["loginForm"].validate((valid) => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!");
+          return false;
+        }
+      });
+    },
+    signUp() {
+      this.$refs["regForm"].validate((valid) => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!");
+          return false;
+        }
+      });
+    },
+
+    toSignUp() {
+      this.status = 2;
+    },
+    toSignIn() {
+      this.status = 1;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
+.sign_box {
+  width: 300px;
+  margin: 200px auto 0;
+  text-align: center;
+  .signText {
+    color: #3878dd;
+    cursor: pointer;
+    &:hover {
+      color: #1760d7;
+    }
+  }
+}
+.signBtn {
+  width: 100%;
+  font-size: 18px;
+}
 </style>

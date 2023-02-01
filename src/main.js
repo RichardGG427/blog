@@ -15,7 +15,7 @@ Vue.use(ElementUI);
 Vue.use(mavonEditor);
 
 router.beforeEach((to, from, next) => {
-  let token = "";
+  let token = "111";
   if (token) {
     store.commit("changeIsSignIn", 1);
   }

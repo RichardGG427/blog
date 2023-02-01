@@ -20,11 +20,14 @@
                 ><i class="iconfont icon-home"></i>Homepage</router-link
               >
             </el-menu-item>
-            <el-menu-item index="2">
+            <el-menu-item index="2" v-if="isSignIn===1">
               <router-link to="/blog">MyBlog</router-link>
             </el-menu-item>
-            <el-menu-item index="3">
+            <el-menu-item index="3" v-if="isSignIn===0">
               <router-link class="signBtn" to="/login">Login</router-link>
+            </el-menu-item>
+            <el-menu-item index="3" v-else-if="isSignIn===1">
+              <router-link class="signBtn" to="/person">Richard</router-link>
             </el-menu-item>
           </el-menu>
         </el-col>
@@ -45,6 +48,11 @@ export default {
       this.activeIndex = index + "";
     },
   },
+  computed: {
+    isSignIn(){
+      return this.$store.state.isSignIn
+    }
+  }
 };
 </script>
 

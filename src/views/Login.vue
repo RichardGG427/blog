@@ -18,6 +18,7 @@
         </el-form-item>
         <el-form-item prop="password">
           <el-input
+            type="password"
             v-model="loginForm.password"
             placeholder="Please input password"
           ></el-input>
@@ -48,12 +49,14 @@
         </el-form-item>
         <el-form-item prop="password">
           <el-input
+            type="password"
             v-model="regForm.password"
             placeholder="Please input password"
           ></el-input>
         </el-form-item>
         <el-form-item prop="checkPass">
           <el-input
+            type="password"
             v-model="regForm.checkPass"
             placeholder="Please input password again"
           ></el-input>
@@ -66,6 +69,7 @@
       </el-form>
       <span class="signText" @click="toSignIn">Back to Login</span>
     </div>
+    <div v-loading.fullscreen.lock="loading"></div>
   </div>
 </template>
 
@@ -92,6 +96,7 @@ export default {
       }
     };
     return {
+      loading: false,
       status: 1,
       loginForm: {
         name: "",
@@ -123,7 +128,12 @@ export default {
     signIn() {
       this.$refs["loginForm"].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          this.loading = true;
+          setTimeout(() => {
+            this.loading = false;
+            this.$store.commit("changeIsSignIn", 1);
+            this.$router.push({ name: "home" });
+          }, 1500);
         } else {
           console.log("error submit!");
           return false;

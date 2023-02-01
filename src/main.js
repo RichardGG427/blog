@@ -7,12 +7,20 @@ import "element-ui/lib/theme-chalk/index.css";
 import "@/assets/scss/reset.scss";
 import "@/assets/font/iconfont.css";
 import "@/assets/scss/common.scss";
-import mavonEditor from 'mavon-editor';
-import 'mavon-editor/dist/css/index.css';
+import mavonEditor from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 Vue.use(mavonEditor);
+
+router.beforeEach((to, from, next) => {
+  let token = "";
+  if (token) {
+    store.commit("changeIsSignIn", 1);
+  }
+  next();
+});
 
 new Vue({
   router,

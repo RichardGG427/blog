@@ -69,9 +69,14 @@
 export default {
   data() {
     return {
-      isSignIn: 1,
+
     };
   },
+  computed: {
+    isSignIn(){
+      return this.$store.state.isSignIn
+    }
+  }
 };
 </script>
 

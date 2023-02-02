@@ -1,0 +1,77 @@
+<template>
+  <div class="wrapper">
+    <h1 class="title">Blog List</h1>
+    <div class="article">
+      <el-button class="addBtn">Add+</el-button>
+      <el-table :data="articleList" border stripe>
+        <el-table-column prop="title" label="Title" width="180">
+        </el-table-column>
+        <el-table-column label="Date" width="180">
+          <template slot-scope="scope">
+            <i class="el-icon-time"></i>
+            <span>{{ scope.row.create_time }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="Activity">
+          <template slot-scope="scope">
+            <el-button size="mini" type="primary" @click="handleLook(scope.row)"
+              >View</el-button
+            >
+            <el-button size="mini" type="success">Edit</el-button>
+            <el-button size="mini" type="danger">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      articleList: [
+        {
+          id: 1,
+          title: "The First Blog",
+          create_time: "2.2.2023",
+        },
+        {
+          id: 2,
+          title: "The Second Blog",
+          create_time: "2.2.2023",
+        },
+        {
+          id: 3,
+          title: "The Third Blog",
+          create_time: "2.2.2023",
+        },
+      ],
+    };
+  },
+  methods: {
+    handleLook(row) {
+      let id = row.id;
+      window.open("#/detail/" + id);
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.title {
+  margin: 30px 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 28px;
+}
+.article {
+  .addBtn {
+    float: right;
+    margin-bottom: 20px;
+  }
+}
+::v-deep .el-table .cell {
+  text-align: center;
+}
+</style>

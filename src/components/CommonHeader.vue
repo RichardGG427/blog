@@ -21,7 +21,7 @@
               >
             </el-menu-item>
             <el-menu-item index="2" v-if="isSignIn === 1">
-              <router-link to="/blog">MyBlog</router-link>
+              <router-link to="/article">MyBlog</router-link>
             </el-menu-item>
             <el-menu-item index="3" v-if="isSignIn === 0">
               <router-link class="signBtn" to="/login">Login</router-link>

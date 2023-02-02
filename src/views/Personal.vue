@@ -21,6 +21,7 @@
           >
             <img :src="imageUrl" class="avatar" />
           </el-upload>
+          <p class="tips">Please upload JPG file (Less than 2 MB)</p>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="Save">Save</el-button>
@@ -102,5 +103,9 @@ export default {
     height: 100px;
     display: block;
   }
+}
+.tips {
+  font-size: 12px;
+  color: #999;
 }
 </style>

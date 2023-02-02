@@ -20,6 +20,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.wrapper {
+  min-height: calc(100vh - 262px);
+}
 .main {
   margin: 0 20px;
   padding: 20px;

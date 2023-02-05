@@ -2,7 +2,7 @@
   <div class="wrapper">
     <h1 class="title">Blog List</h1>
     <div class="article">
-      <el-button class="addBtn">Add+</el-button>
+      <el-button class="addBtn" @click="handleAdd">Add+</el-button>
       <el-table :data="articleList" border stripe>
         <el-table-column prop="title" label="Title" width="180">
         </el-table-column>
@@ -17,7 +17,9 @@
             <el-button size="mini" type="primary" @click="handleLook(scope.row)"
               >View</el-button
             >
-            <el-button size="mini" type="success">Edit</el-button>
+            <el-button size="mini" type="success" @click="handleEdit(scope.row)"
+              >Edit</el-button
+            >
             <el-button size="mini" type="danger">Delete</el-button>
           </template>
         </el-table-column>
@@ -50,9 +52,16 @@ export default {
     };
   },
   methods: {
+    handleAdd() {
+      this.$router.push({ name: "editArticle" });
+    },
     handleLook(row) {
       let id = row.id;
       window.open("#/detail/" + id);
+    },
+    handleEdit(row) {
+      let id = row.id;
+      this.$router.push({ path: `/article/edit/${id}` });
     },
   },
 };

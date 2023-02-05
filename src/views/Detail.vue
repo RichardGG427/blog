@@ -11,6 +11,7 @@
           defaultOpen="preview"
           :toolbarsFlag="false"
           :subfield="false"
+          language="en"
         />
       </div>
       <comment></comment>

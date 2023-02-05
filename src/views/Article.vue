@@ -20,7 +20,12 @@
             <el-button size="mini" type="success" @click="handleEdit(scope.row)"
               >Edit</el-button
             >
-            <el-button size="mini" type="danger">Delete</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.row)"
+              >Delete</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -62,6 +67,27 @@ export default {
     handleEdit(row) {
       let id = row.id;
       this.$router.push({ path: `/article/edit/${id}` });
+    },
+    handleDelete(row) {
+      let id = row.id;
+      this.$confirm("This blog will be deleted, continue?", "tip", {
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
+        type: "warning",
+      })
+        .then(() => {
+          //request delete
+          this.$message({
+            type: "success",
+            message: `${id}` + " " + `Blog Delete success!`,
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "Delete cancelled",
+          });
+        });
     },
   },
 };
